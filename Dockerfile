@@ -43,6 +43,7 @@ RUN git submodule update --init --recursive
 # Install python part using uv
 RUN uv sync --frozen
 
+# 设置 MADRONA_MWGPU_KERNEL_CACHE 环境变量，避免每次都重新编译 CUDA kernel
 ENV MADRONA_MWGPU_KERNEL_CACHE=./gpudrive_cache
 
 RUN mkdir build
@@ -53,6 +54,10 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 RUN LD_LIBRARY_PATH=/usr/local/cuda/lib64/stubs/:$LD_LIBRARY_PATH uv run make -j
 RUN rm /usr/local/cuda/lib64/stubs/libcuda.so.1
 WORKDIR /workspace/gpudrive
+
+# 映射 .venv/bin/python 到 python 和 python3，方便直接调用
+RUN ln -sf /workspace/gpudrive/.venv/bin/python /usr/local/bin/python \
+    && ln -sf /workspace/gpudrive/.venv/bin/python /usr/local/bin/python3
 
 # 如需清理代理，取消注释
 # ENV http_proxy=
