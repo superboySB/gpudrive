@@ -2,5 +2,8 @@
     // Use the specified Python interpreter for Jupyter and Python
     "python.defaultInterpreterPath": "/workspace/gpudrive/.venv/bin/python",
     "jupyter.pythonPath": "/workspace/gpudrive/.venv/bin/python",
-    "python.venvPath": "/workspace/gpudrive/.venv"
+    "python.venvPath": "/workspace/gpudrive/.venv",
+    "python.terminal.activateEnvironment": true,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.enableAutoMatcher": true
 } 

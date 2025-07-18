@@ -43,6 +43,9 @@ RUN git submodule update --init --recursive
 # Install python part using uv
 RUN uv sync --frozen
 
+# Install ipykernel for Jupyter support
+RUN uv add ipykernel
+
 # 设置 MADRONA_MWGPU_KERNEL_CACHE 环境变量，避免每次都重新编译 CUDA kernel
 ENV MADRONA_MWGPU_KERNEL_CACHE=./gpudrive_cache
 
@@ -58,6 +61,9 @@ WORKDIR /workspace/gpudrive
 # 映射 .venv/bin/python 到 python 和 python3，方便直接调用
 RUN ln -sf /workspace/gpudrive/.venv/bin/python /usr/local/bin/python \
     && ln -sf /workspace/gpudrive/.venv/bin/python /usr/local/bin/python3
+
+# 设置PYTHONPATH，让Python能够找到编译好的包
+ENV PYTHONPATH=/workspace/gpudrive/build:$PYTHONPATH
 
 # 如需清理代理，取消注释
 # ENV http_proxy=
