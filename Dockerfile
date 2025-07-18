@@ -44,7 +44,7 @@ RUN git submodule update --init --recursive
 RUN uv sync --frozen
 
 # Install ipykernel for Jupyter support
-RUN uv add ipykernel
+RUN uv add ipykernel && uv add "pufferlib@git+https://github.com/PufferAI/PufferLib.git@gpudrive"
 
 # 设置 MADRONA_MWGPU_KERNEL_CACHE 环境变量，避免每次都重新编译 CUDA kernel
 ENV MADRONA_MWGPU_KERNEL_CACHE=./gpudrive_cache
