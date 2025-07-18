@@ -22,3 +22,9 @@ python baselines/ppo/ppo_sb3.py
 目前Pufferlib缺少了同步维护，后续可以看一下怎么结合现有SB3或者cleanRL。
 
 ### 内部网络（todo）
+```sh
+docker run -itd --privileged --gpus all --net=host -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:ro --shm-size=20G \
+  -v /disk:/disk -v /disk1:/disk1 -v /mnt:/mnt \
+  --name dzp-waymax-0717 dzp_waymax:0717 /bin/bash
+```
