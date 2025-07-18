@@ -1,7 +1,7 @@
 data_dir: "data/processed/examples"
 num_worlds: 100
 k_unique_scenes: 4
-device: "cuda"  # or "cpu"
+device: "cpu"  # “cuda”(sm_70 and up) or "cpu"
 
 reward_type: "weighted_combination"
 remove_non_vehicles: false
