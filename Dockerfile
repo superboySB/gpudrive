@@ -62,8 +62,12 @@ WORKDIR /workspace/gpudrive
 RUN ln -sf /workspace/gpudrive/.venv/bin/python /usr/local/bin/python \
     && ln -sf /workspace/gpudrive/.venv/bin/python /usr/local/bin/python3
 
-# 设置PYTHONPATH，让Python能够找到编译好的包
-ENV PYTHONPATH=/workspace/gpudrive/build:$PYTHONPATH
+# 设置PYTHONPATH，让Python能够找到编译好的包和虚拟环境的site-packages
+ENV PYTHONPATH=/workspace/gpudrive/build:/workspace/gpudrive/.venv/lib/python3.11/site-packages:$PYTHONPATH
+
+# 设置虚拟环境变量，确保Python知道它运行在虚拟环境中
+ENV VIRTUAL_ENV=/workspace/gpudrive/.venv
+ENV PATH=/workspace/gpudrive/.venv/bin:$PATH
 
 # 如需清理代理，取消注释
 # ENV http_proxy=

@@ -15,6 +15,6 @@ NOTE: If you downloaded the full-sized dataset, it is grouped to subdirectories 
 ```sh
 python data_utils/postprocessing.py
 ```
-跟着所有ipynb走一遍吧。
+跟着所有ipynb走一遍吧，注意GTX 1050 Ti 计算能力是 6.1，但 madrona_gpudrive 需要计算能力 7.0+ 的 CUDA 功能，在小破本上会导致编译失败并回退到 CPU 模式，device设置失效。
 
 ### 内部网络（todo）
