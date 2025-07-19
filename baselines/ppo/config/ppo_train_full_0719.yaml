@@ -1,6 +1,6 @@
 data_dir: "data/processed/training"
-num_worlds: 128
-k_unique_scenes: 128
+num_worlds: 320  # 320 use GPU memory: 24G
+k_unique_scenes: 320
 device: "cuda"  # “cuda”(sm_70 and up) or "cpu"
 
 reward_type: "weighted_combination"
@@ -10,7 +10,7 @@ observation_radius: 50.0
 collision_behavior: "ignore" # Options: "remove", "stop", "ignore"
 
 resample_scenes: false
-resample_dataset_size: 128 # Number of unique scenes to sample from
+resample_dataset_size: 320 # Number of unique scenes to sample from
 resample_interval: 2_000_000
 sample_with_replacement: true
 shuffle_dataset: false
@@ -41,7 +41,7 @@ vf_coef: 0.5
 n_steps: 91  # Number of steps per rollout
 num_minibatches: 5  # Used to determine the minibatch size
 verbose: 0
-total_timesteps: 100_000_000
+total_timesteps: 500_000_000
 ent_coef: 0.0001
 lr: 0.0003
 n_epochs: 5

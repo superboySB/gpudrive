@@ -13,7 +13,7 @@ docker exec -it dzp-waymax-0717 /bin/bash
 ```
 跟着所有ipynb走一遍吧，注意GTX 1050 Ti 计算能力是 6.1，但 madrona_gpudrive 需要计算能力 7.0+ 的 CUDA 功能，在小破本上会导致编译失败并回退到 CPU 模式，device设置失效。
 ```sh
-python baselines/ppo/ppo_sb3.py
+CUDA_VISIBLE_DEVICES=0 python baselines/ppo/ppo_sb3.py
 ```
 目前Pufferlib缺少了同步维护，后续可以看一下怎么结合现有SB3或者cleanRL。
 
@@ -29,11 +29,17 @@ NOTE: If you downloaded the full-sized dataset, it is grouped to subdirectories 
 ```sh
 # mini version
 # python data_utils/post_processing.py /workspace/for_waymax/GPUDrive_mini --target_dir data/processed --num_workers 8
-python data_utils/post_processing.py /mnt/dataset/GPUDrive --target_dir data/processed --num_workers 8
+python data_utils/post_processing.py /disk/deepdata/dataset/GPUDrive --target_dir data/processed --num_workers 64
 ```
 尝试跑大的
 ```sh
-python baselines/ppo/ppo_sb3.py --config baselines/ppo/config/ppo_train_full_0719.yaml
+CUDA_VISIBLE_DEVICES=0 python baselines/ppo/ppo_sb3.py --config baselines/ppo/config/ppo_train_full_0719.yaml
 ```
 
-## 定制化
+## 定制化开发
+### 注意！修改MDP建模后需要重新编译
+```sh
+bash rebuild.sh
+```
+### 魔改Corner Case
+
