@@ -117,7 +117,16 @@ def train(exp_config: Box):
 
 
 if __name__ == "__main__":
+    import argparse
 
-    exp_config = load_config("baselines/ppo/config/ppo_base_sb3.yaml")
+    parser = argparse.ArgumentParser(description="Run PPO training with SB3 config.")
+    parser.add_argument(
+        "--config",
+        type=str,
+        default="baselines/ppo/config/ppo_base_sb3.yaml",
+        help="Path to the experiment config YAML file."
+    )
+    args = parser.parse_args()
+    exp_config = load_config(args.config)
 
     train(exp_config)
