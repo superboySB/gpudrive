@@ -25,11 +25,15 @@ docker run -itd --privileged --gpus all --net=host -e DISPLAY=$DISPLAY \
   -v /disk:/disk -v /disk1:/disk1 -v /mnt:/mnt \
   --name dzp-waymax-0717 dzp_waymax:0717 /bin/bash
 ```
-NOTE: If you downloaded the full-sized dataset, it is grouped to subdirectories of 10k files each (according to hugging face constraints). In order for the path to work with GPUDrive, you need to run
+为了后续开发，建议删了源码重新编译
+```sh
+
+```
+NOTE: If you downloaded the full-sized dataset, it is grouped to subdirectories of 10k files each (according to hugging face constraints). In order for the path to work with GPUDrive, you need to run。
 ```sh
 # mini version
 # python data_utils/post_processing.py /workspace/for_waymax/GPUDrive_mini --target_dir data/processed --num_workers 8
-python data_utils/post_processing.py /disk/deepdata/dataset/GPUDrive --target_dir data/processed --num_workers 64
+python data_utils/post_processing.py /disk/deepdata/dataset/GPUDrive --target_dir /disk/deepdata/workspace/dzp_workspace/others/GPUDrive_full_processed --num_workers 64
 ```
 尝试跑大的
 ```sh
@@ -37,9 +41,10 @@ CUDA_VISIBLE_DEVICES=0 python baselines/ppo/ppo_sb3.py --config baselines/ppo/co
 ```
 
 ## 定制化开发
-### 注意！修改MDP建模后需要重新编译
+### 注意！修改MDP建模相关的C+=或者后需要重新编译
 ```sh
 bash rebuild.sh
 ```
+### 
 ### 魔改Corner Case
 

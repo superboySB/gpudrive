@@ -1,6 +1,6 @@
 # Overrides default environment configs (see pygpudrive/env/config.py)
-max_controlled_agents: 64 # Maximum number of agents controlled by the model. Make sure this aligns with the variable kMaxAgentCount in src/consts.hpp
-# max_controlled_agents: 5 # 64差不多是全集了，小一点0，1，2看看混合控制，其实此时env.max_agent_count还是64
+# max_controlled_agents: 64 # Maximum number of agents controlled by the model. Make sure this aligns with the variable kMaxAgentCount in src/consts.hpp
+max_controlled_agents: 1 # 64差不多是全集了，小一点0，1，2看看混合控制，其实此时env.max_agent_count还是64，不过不管怎么设置，goal是一样的
 
 ego_state: true
 road_map_obs: true

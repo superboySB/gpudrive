@@ -113,7 +113,7 @@ This gives you precise control over agent behavior for specific testing scenario
 
 ## Incorporating rewards into the observation
 
-For the policy to adapt its behavior based on reward conditioning, the reward weights should be included in the agent's observation. This allows the policy to "know" it's type. By default, if `reward_type == 'reward_conditioned'`, the weights for each of the 3 reward components are added to the `ego_state`.
+**For the policy to adapt its behavior based on reward conditioning, the reward weights should be included in the agent's observation**. This allows the policy to "know" it's type. By default, if `reward_type == 'reward_conditioned'`, the weights for each of the 3 reward components are added to the `ego_state`.
 
 ## Conclusion
 
